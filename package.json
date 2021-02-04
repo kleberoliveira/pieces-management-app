@@ -1,0 +1,30 @@
+{
+  "name": "nextjs",
+  "version": "4.0.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "latest",
+    "@material-ui/icons": "^4.9.1",
+    "axios": "^0.19.2",
+    "clsx": "latest",
+    "dotenv": "^8.2.0",
+    "dotenv-load": "^2.0.0",
+    "isomorphic-unfetch": "^3.0.0",
+    "lodash": "^4.17.15",
+    "next": "latest",
+    "next-env": "^1.1.1",
+    "prop-types": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-perfect-scrollbar": "^1.5.8",
+    "react-text-mask": "latest",
+    "swr": "latest"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "test": "echo \" Without test yet\"",
+    "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
+  }
+}
