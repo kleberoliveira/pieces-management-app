@@ -33,7 +33,7 @@ export default function CardStats({
             </div>
           </div>
           <p className="text-sm text-gray-500 mt-4">
-            <span className="whitespace-no-wrap">{statDescripiron}</span>
+            <span className="whitespace-no-wrap">Quantidades</span>
           </p>
         </div>
       </div>

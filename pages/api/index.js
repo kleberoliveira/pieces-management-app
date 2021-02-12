@@ -2,13 +2,13 @@ import axios from "axios";
 
 export default async ({ url, method, body }) => {
   return axios({
-    baseURL: process.env.APP_API_URL,
+    baseURL: 'http://localhost:3000',
     url: `/${url}`,
     method,
     data: body,
     auth:{
-      username: process.env.APP_USER,
-      password: process.env.APP_PASS,
+      username: 'teste',
+      password: 'teste',
     },
   }).catch((error) => error);
 };

@@ -1,10 +1,20 @@
 import React from 'react'
+import { server } from 'config'
+import fetch from 'libs/fetch'
+import useSWR from 'swr'
+import { useRouter } from 'next/router'
 
 // components
-
 import CardStats from 'components/Cards/CardStats.js'
+import Loading from 'components/Loading/Loading.js'
 
 export default function HeaderStats() {
+  const router = useRouter()
+  let { data, error } = useSWR(`${server}/api/dashboard`, fetch)
+
+  if (error) return router.push('/')
+  if (!data) return <Loading />  
+
   return (
     <>
       {/* Header */}
@@ -15,8 +25,7 @@ export default function HeaderStats() {
           <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
             <CardStats
               statSubtitle="USUÁRIOS"
-              statTitle="1000"
-              statDescripiron="Atualizado ontem"
+              statTitle={String(data.users.length)}
               statIconName="far fa-user-circle"
               statIconColor="bg-red-500"
             />
@@ -24,8 +33,7 @@ export default function HeaderStats() {
           <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
             <CardStats
               statSubtitle="LOCAIS"
-              statTitle="3990"
-              statDescripiron="Atualizado ultima semana"
+              statTitle={String(data.places.length)}
               statIconName="fas fa-map-marker"
               statIconColor="bg-orange-500"
             />
@@ -33,8 +41,7 @@ export default function HeaderStats() {
           <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
             <CardStats
               statSubtitle="OPERADORES"
-              statTitle="12"
-              statDescripiron="Atualizado hoje"
+              statTitle={String(data.operators.length)}
               statIconName="fas fa-users"
               statIconColor="bg-pink-500"
             />
@@ -42,8 +49,7 @@ export default function HeaderStats() {
           <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
             <CardStats
               statSubtitle="PRODUTOS"
-              statTitle="1231231"
-              statDescripiron="Atualizado mês passado"
+              statTitle={String(data.products.length)}
               statIconName="fas fa-barcode"
               statIconColor="bg-blue-500"
             />

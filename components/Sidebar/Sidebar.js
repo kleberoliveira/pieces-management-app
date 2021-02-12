@@ -26,7 +26,7 @@ export default function Sidebar() {
               href="#pablo"
               className="md:block text-left md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-0"
             >
-              Administrador
+              Rastreabilidade Ambev
             </a>
           </Link>
           {/* User */}
@@ -54,7 +54,7 @@ export default function Sidebar() {
                       href="#pablo"
                       className="md:block text-left md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-0"
                     >
-                      Administrador
+                      Rastreabilidade Ambev
                     </a>
                   </Link>
                 </div>
@@ -120,7 +120,7 @@ export default function Sidebar() {
                 <li className="items-center" key={key}>
                   <Link href={item.link}>
                     <a
-                      href="#pablo"
+                      href="#link"
                       className={
                         'text-xs uppercase py-3 font-bold block flex flex-row' +
                         (router.pathname.indexOf(item.link) !== -1

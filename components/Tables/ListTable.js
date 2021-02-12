@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Link from 'next/link'
 
 // components
 
@@ -10,6 +11,7 @@ export default function ListTable({
   title = 'Simple Title',
   headers = ['sample column'],
   data = [{ id: 1, sampleColumn: 'teste' }],
+  handlerDelete = () => {}
 }) {
   return (
     <>
@@ -32,13 +34,15 @@ export default function ListTable({
               </h3>
             </div>
             <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-              <button
-                className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                type="button"
-              >
-                Criar novo
-              </button>
-            </div>            
+              <Link href="?insert">
+                <button
+                  className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                  type="button"
+                >
+                  Criar novo
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
         <div className="block w-full overflow-x-auto">
@@ -75,15 +79,21 @@ export default function ListTable({
                 <tr key={dataKey}>
                   {Object.keys(datum).map(
                     (key) =>
-                      key !== 'id' && (
-                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4" key={`${key}-${dataKey}`}>
+                      key !== '_id' && (
+                        <td
+                          className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
+                          key={`${key}-${dataKey}`}
+                        >
                           {datum[key]}
                         </td>
                       ),
                   )}
 
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-right" key={`${dataKey}-options`}>
-                    <TableDropdown id={datum.id} />
+                  <td
+                    className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-right"
+                    key={`${dataKey}-options`}
+                  >
+                    <TableDropdown id={datum._id} handlerDelete={handlerDelete} />
                   </td>
                 </tr>
               ))}
