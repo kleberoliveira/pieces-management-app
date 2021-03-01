@@ -96,9 +96,9 @@ export default function Histórico() {
                                         'dd/MM/yyyy HH:mm:ss'
                                     ),
                                     history,
-                                    place: place.name,
-                                    operator: operator.name,
-                                    product: product.description,
+                                    place: place ? place.name : '',
+                                    operator: operator ? operator.name : '',
+                                    product: product ? product.description : '',
                                 })
                             )}
                             handlerDelete={handlerDelete}

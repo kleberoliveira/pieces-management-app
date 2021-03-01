@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { server } from 'config'
 import fetch from 'libs/fetch'
 import useSWR from 'swr'
+import { v4 as uuidv4 } from 'uuid'
 
 // components
 import ListTable from 'components/Tables/ListTable.js'
@@ -50,12 +51,12 @@ export default function Products() {
                     router.query.update === undefined ? (
                         <ListTable
                             title="Produtos"
-                            headers={['SAP', 'UUID', 'Descrição', 'Situação']}
+                            headers={['UUID', 'SAP', 'Descrição', 'Situação']}
                             data={data.map(
                                 ({ _id, sap, uuid, description, status }) => ({
                                     _id,
-                                    sap,
                                     uuid,
+                                    sap,
                                     description,
                                     status,
                                 })
@@ -66,13 +67,14 @@ export default function Products() {
                         <EditTable
                             title="Produto"
                             id={router.query.id}
-                            currentData={currentData}
+                            currentData={currentData || { uuid: uuidv4() }}
                             fields={{
                                 id: 1,
-                                sap: { label: 'SAP' },
                                 uuid: {
                                     label: 'UUID',
+                                    readOnly: true,
                                 },
+                                sap: { label: 'SAP' },
                                 description: { label: 'Descrição' },
                                 status: { label: 'Situação', type: 'select' },
                             }}
