@@ -29,6 +29,12 @@ export default async (request, response) => {
             operators: operators.data,
             products: products.data,
             places: places.data,
+            statuss: [
+                { name: 'Em Manutenção' },
+                { name: 'Em Almoxarifado' },
+                { name: 'Em Uso' },
+                { name: 'Em fornecedor' },
+            ],
         })
     )
 }

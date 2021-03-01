@@ -74,7 +74,7 @@ export default function Products() {
                                     label: 'UUID',
                                 },
                                 description: { label: 'Descrição' },
-                                status: { label: 'Situação' },
+                                status: { label: 'Situação', type: 'select' },
                             }}
                             handler={handlerSave}
                         />
