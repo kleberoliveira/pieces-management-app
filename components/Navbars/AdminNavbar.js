@@ -7,7 +7,7 @@ export default function Navbar() {
         router.pathname.split('/').length - 1
     ]
     const titles = {
-        dashboard: 'Dashboard',
+        dashboard: 'Histórico',
         operators: 'Operadores',
         places: 'Locais',
         products: 'Produtos',

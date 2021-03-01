@@ -13,7 +13,7 @@ import Loading from 'components/Loading/Loading.js'
 // layout for page
 import Admin from 'layouts/Admin.js'
 
-export default function Dashboard() {
+export default function Histórico() {
     const router = useRouter()
     let { data, error } = useSWR(`${server}/api/histories`, fetch)
 
@@ -25,8 +25,19 @@ export default function Dashboard() {
                 body: JSON.stringify(payload),
             }
         ).then((value) => {
-            if (!payload._id) data.push(value)
-            router.push('dashboard')
+
+            fetch(`${server}/api/dashboard`).then( ({ products, operators, places })  => {
+                
+                value.product = products.find(product => product._id === value.product)
+                value.operator = operators.find(operator => operator._id === value.operator)
+                value.place = places.find(place => place._id === value.place)
+
+                if (!payload._id) data.push(value)
+                router.push('dashboard')
+
+            })
+
+            
         })
     }
 
@@ -115,4 +126,4 @@ export default function Dashboard() {
     )
 }
 
-Dashboard.layout = Admin
+Histórico.layout = Admin

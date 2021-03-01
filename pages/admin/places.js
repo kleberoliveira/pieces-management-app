@@ -50,7 +50,7 @@ export default function Places() {
                     router.query.update === undefined ? (
                         <ListTable
                             title="Locais"
-                            headers={['Nome', 'Nome do Local']}
+                            headers={['Nome', 'Setor']}
                             data={data.map(({ _id, name, place }) => ({
                                 _id,
                                 name,
@@ -66,7 +66,7 @@ export default function Places() {
                             fields={{
                                 name: { label: 'Nome' },
                                 place: {
-                                    label: 'Nome do Local',
+                                    label: 'Setor',
                                 },
                             }}
                             handler={handlerSave}

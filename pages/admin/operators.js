@@ -53,7 +53,7 @@ export default function Operators() {
                     router.query.update === undefined ? (
                         <ListTable
                             title="Operadores"
-                            headers={['Nome', 'Nome do Operador']}
+                            headers={['Nome', 'Setor']}
                             data={data.map(({ _id, name, operator }) => ({
                                 _id,
                                 name,
@@ -69,7 +69,7 @@ export default function Operators() {
                             fields={{
                                 name: { label: 'Nome' },
                                 operator: {
-                                    label: 'Nome do Operador',
+                                    label: 'Setor',
                                 },
                             }}
                             handler={handlerSave}

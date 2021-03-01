@@ -96,7 +96,7 @@ export default function Sidebar() {
                             {[
                                 {
                                     link: '/admin/dashboard',
-                                    name: 'Dashboard',
+                                    name: 'Histórico',
                                     icon: 'fa-tv',
                                 },
                                 {
