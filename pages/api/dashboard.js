@@ -4,7 +4,7 @@ import piecesManagementApi from './index'
 export default withIronSession(
     async (request, response) => {
         const bearer = request.session.get('token')
-        
+
         const places = await piecesManagementApi({
             method: 'GET',
             url: 'places',

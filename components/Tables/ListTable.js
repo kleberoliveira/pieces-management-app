@@ -12,6 +12,7 @@ export default function ListTable({
     headers = ['sample column'],
     data = [{ id: 1, sampleColumn: 'teste' }],
     handlerDelete = () => {},
+    insertButton = true,
 }) {
     return (
         <>
@@ -35,16 +36,18 @@ export default function ListTable({
                                 {title}
                             </h3>
                         </div>
-                        <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-                            <Link href="?insert">
-                                <button
-                                    className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                    type="button"
-                                >
-                                    Criar novo
-                                </button>
-                            </Link>
-                        </div>
+                        {insertButton && (
+                            <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+                                <Link href="?insert">
+                                    <button
+                                        className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                        type="button"
+                                    >
+                                        Criar novo
+                                    </button>
+                                </Link>
+                            </div>
+                        )}
                     </div>
                 </div>
                 <div className="block w-full overflow-x-auto">

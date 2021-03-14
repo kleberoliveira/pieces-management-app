@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-import Error from "next/error";
+import Error from 'next/error'
 import { server } from 'config'
 import fetch from 'libs/fetch'
 import useSWR from 'swr'
@@ -44,7 +44,7 @@ export default function Products({ token }) {
     }
 
     if (!token) return <Redirect to={'/login'} />
-    if (error) return <Error />    
+    if (error) return <Error />
     if (!data) return <Loading />
 
     const currentData = data.filter((datum) => datum._id === router.query.id)[0]
