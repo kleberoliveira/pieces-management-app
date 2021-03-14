@@ -1,5 +1,6 @@
 import React from 'react'
 import { useRouter } from 'next/router'
+import Error from "next/error";
 import { server } from 'config'
 import fetch from 'libs/fetch'
 import useSWR from 'swr'
@@ -9,11 +10,15 @@ import { v4 as uuidv4 } from 'uuid'
 import ListTable from 'components/Tables/ListTable.js'
 import EditTable from 'components/Tables/EditTable.js'
 import Loading from 'components/Loading/Loading.js'
+import Redirect from 'components/Redirect'
 
 // layout for page
 import Admin from 'layouts/Admin.js'
+import IronSession from '../../libs/session'
 
-export default function Products() {
+export const getServerSideProps = IronSession
+
+export default function Products({ token }) {
     const router = useRouter()
     const { data, error } = useSWR(`${server}/api/products`, fetch)
 
@@ -38,7 +43,8 @@ export default function Products() {
         })
     }
 
-    if (error) return router.push('/')
+    if (!token) return <Redirect to={'/login'} />
+    if (error) return <Error />    
     if (!data) return <Loading />
 
     const currentData = data.filter((datum) => datum._id === router.query.id)[0]

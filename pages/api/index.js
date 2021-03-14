@@ -1,14 +1,13 @@
 import axios from 'axios'
-
-export default async ({ url, method, body }) => {
+export default async ({ url, method, body, bearer }) => {
     return axios({
-        baseURL: 'http://localhost:3000',
-        url: `/${url}`,
+        url: `${process.env.API_HOST}/${url}`,
         method,
         data: body,
-        auth: {
-            username: 'teste',
-            password: 'teste',
-        },
+        headers: bearer
+            ? {
+                  Authorization: `Bearer ${bearer}`,
+              }
+            : {},
     }).catch((error) => error)
 }

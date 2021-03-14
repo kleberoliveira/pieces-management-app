@@ -1,5 +1,6 @@
 import React from 'react'
 import { useRouter } from 'next/router'
+import Error from 'next/error'
 import { server } from 'config'
 import fetch from 'libs/fetch'
 import useSWR from 'swr'
@@ -9,11 +10,15 @@ import { format } from 'date-fns'
 import ListTable from 'components/Tables/ListTable.js'
 import EditTable from 'components/Tables/EditTable.js'
 import Loading from 'components/Loading/Loading.js'
+import Redirect from 'components/Redirect'
 
 // layout for page
 import Admin from 'layouts/Admin.js'
+import IronSession from '../../libs/session'
 
-export default function Histórico() {
+export const getServerSideProps = IronSession
+
+export default function Dashboard({ token }) {
     const router = useRouter()
     let { data, error } = useSWR(`${server}/api/histories`, fetch)
 
@@ -25,19 +30,22 @@ export default function Histórico() {
                 body: JSON.stringify(payload),
             }
         ).then((value) => {
+            fetch(`${server}/api/dashboard`).then(
+                ({ products, operators, places }) => {
+                    value.product = products.find(
+                        (product) => product._id === value.product
+                    )
+                    value.operator = operators.find(
+                        (operator) => operator._id === value.operator
+                    )
+                    value.place = places.find(
+                        (place) => place._id === value.place
+                    )
 
-            fetch(`${server}/api/dashboard`).then( ({ products, operators, places })  => {
-                
-                value.product = products.find(product => product._id === value.product)
-                value.operator = operators.find(operator => operator._id === value.operator)
-                value.place = places.find(place => place._id === value.place)
-
-                if (!payload._id) data.push(value)
-                router.push('dashboard')
-
-            })
-
-            
+                    if (!payload._id) data.push(value)
+                    router.push('dashboard')
+                }
+            )
         })
     }
 
@@ -52,7 +60,8 @@ export default function Histórico() {
         })
     }
 
-    if (error) return router.push('/')
+    if (!token) return <Redirect to={'/login'} />
+    if (error) return <Error />
     if (!data) return <Loading />
 
     const currentData = data
@@ -126,4 +135,4 @@ export default function Histórico() {
     )
 }
 
-Histórico.layout = Admin
+Dashboard.layout = Admin

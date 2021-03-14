@@ -19,7 +19,7 @@ export default function Admin({ children }) {
                 <div className="relative bg-gray-900 pb-32 pt-12">
                     <div className="px-4 md:px-10 mx-auto w-full">
                         {router.pathname.indexOf('/admin/dashboard') !== -1 && (
-                            <HeaderStats />
+                            <HeaderStats token={children.props.token} />
                         )}
                     </div>
                 </div>

@@ -1,17 +1,19 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 import { server } from 'config'
 import fetch from 'libs/fetch'
 import useSWR from 'swr'
-import { useRouter } from 'next/router'
 
 // components
 import CardStats from 'components/Cards/CardStats.js'
 import Loading from 'components/Loading/Loading.js'
+import Redirect from 'components/Redirect'
 
-export default function HeaderStats() {
+export default function HeaderStats({ token }) {
     const router = useRouter()
     let { data, error } = useSWR(`${server}/api/dashboard`, fetch)
 
+    if (!token) return <Redirect to={'/login'} />
     if (error) return router.push('/')
     if (!data) return <Loading />
 

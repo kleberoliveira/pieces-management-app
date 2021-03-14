@@ -23,7 +23,7 @@ export default function Sidebar() {
                         <i className="fas fa-bars"></i>
                     </button>
                     {/* Brand */}
-                    <Link href="/">
+                    <Link href="/admin/dashboard">
                         <a
                             href="#pablo"
                             className="md:block text-left md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-0"
