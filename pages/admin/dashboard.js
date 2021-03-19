@@ -40,7 +40,7 @@ export default function Dashboard({ token }) {
                 body: JSON.stringify(payload),
             }
         ).then(() => {
-            fetch(`${server}/api/histories/product/${productId}`).then(
+            fetch(`${server}/api/histories/product/${payload._id}`).then(
                 (values) => {
                     useResults(values)
                     router.push('dashboard')
