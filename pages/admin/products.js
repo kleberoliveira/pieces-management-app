@@ -4,7 +4,7 @@ import Error from 'next/error'
 import { server } from 'config'
 import fetch from 'libs/fetch'
 import useSWR from 'swr'
-import { v4 as uuidv4 } from 'uuid'
+import * as randomstring from 'randomstring'
 
 // components
 import ListTable from 'components/Tables/ListTable.js'
@@ -73,7 +73,7 @@ export default function Products({ token }) {
                         <EditTable
                             title="Produto"
                             id={router.query.id}
-                            currentData={currentData || { uuid: uuidv4() }}
+                            currentData={currentData || { uuid: randomstring.generate(8) }}
                             fields={{
                                 id: 1,
                                 uuid: {
