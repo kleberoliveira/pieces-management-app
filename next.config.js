@@ -6,6 +6,7 @@ const path = require('path')
 
 module.exports = {
     env: {
+        APP_HOST: process.env.APP_HOST,
         API_HOST: process.env.API_HOST,
         APPLICATION_SECRET: process.env.APPLICATION_SECRET,
     },
